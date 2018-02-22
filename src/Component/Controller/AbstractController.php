@@ -6,9 +6,9 @@ abstract class AbstractController {
 
     /**
      * @param string $name
-     * @return ControllerMethodAction
+     * @return callable
      */
-    public static function action(string $name): ControllerMethodAction {
-        return new ControllerMethodAction(get_called_class(), $name . 'Action');
+    public static function action(string $name): callable {
+        return [get_called_class(), $name . 'Action'];
     }
 }

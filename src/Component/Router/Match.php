@@ -2,12 +2,10 @@
 
 namespace Locaty\Component\Router;
 
-use Locaty\Entity\AbstractAction;
-
 class Match {
 
     /**
-     * @var AbstractAction
+     * @var callable
      */
     private $_action;
 
@@ -22,11 +20,11 @@ class Match {
     private $_name;
 
     /**
-     * @param AbstractAction $action
+     * @param callable $action
      * @param array $params
      * @param string $name
      */
-    public function __construct(AbstractAction $action, array $params = [], string $name = null) {
+    public function __construct(callable $action, array $params = [], string $name = null) {
         $this->_action = $action;
         $this->_params = $params;
         $this->_name = $name;
@@ -40,9 +38,9 @@ class Match {
     }
 
     /**
-     * @return AbstractAction
+     * @return callable
      */
-    public function action(): AbstractAction {
+    public function action(): callable {
         return $this->_action;
     }
 

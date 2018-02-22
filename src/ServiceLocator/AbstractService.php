@@ -1,6 +1,6 @@
 <?php
 
-namespace Locaty\Entity;
+namespace Locaty\ServiceLocator;
 
 abstract class AbstractService {
 

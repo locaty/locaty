@@ -2,10 +2,10 @@
 
 namespace Locaty\Component\Router;
 
-use Locaty\Entity;
 use Locaty\Exception;
+use Locaty\ServiceLocator;
 
-class Facade extends Entity\AbstractService {
+class Facade extends ServiceLocator\AbstractService {
 
     /**
      * @param array $routes
@@ -20,9 +20,6 @@ class Facade extends Entity\AbstractService {
         $match = $router->match($uri, $method);
         if ($match === false) {
             throw new Exception\NotFound();
-        }
-        if (!($match['target'] instanceof Entity\AbstractAction)) {
-            throw new Exception\BadUsage('Route target must be instance of ' . Entity\AbstractAction::class);
         }
         return new Match($match['target'], $match['params'], $match['name']);
     }

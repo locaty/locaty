@@ -3,7 +3,6 @@
 namespace Tests\Mock\Component\Router;
 
 use Locaty\Component\Router;
-use Locaty\Component\Controller;
 
 class Facade extends Router\Facade {
 
@@ -14,7 +13,6 @@ class Facade extends Router\Facade {
      * @return Router\Match
      */
     public function getMatchingRoute(array $routes, string $uri = null, string $method = null): Router\Match {
-        $action = new Controller\ControllerMethodAction('testClass', 'testAction');
-        return new Router\Match($action, [], 'testAction');
+        return new Router\Match(function() {}, [], 'testAction');
     }
 }
