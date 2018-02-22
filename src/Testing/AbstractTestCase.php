@@ -10,4 +10,8 @@ abstract class AbstractTestCase extends TestCase {
     public function setUp() {
         SL::allowInjections();
     }
+
+    public function tearDown() {
+        SL::resetInjections();
+    }
 }

@@ -33,10 +33,6 @@ abstract class AbstractServiceLocator {
         return $service;
     }
 
-    public static function allowInjections(): void {
-        self::$_allowInjections = true;
-    }
-
     /**
      * @param string $class
      * @param string $replaceClass
@@ -44,8 +40,17 @@ abstract class AbstractServiceLocator {
     public static function inject(string $class, string $replaceClass): void {
         self::_ensureInjectionAvailable();
         self::$_injections[$class] = $replaceClass;
-        if (array_key_exists($class, self::$_services)) {
-            self::$_services[$class] = new $replaceClass();
+        self::$_services[$class] = new $replaceClass();
+    }
+
+    public static function allowInjections(): void {
+        self::$_allowInjections = true;
+    }
+
+    public static function resetInjections(): void {
+        self::$_allowInjections = false;
+        foreach (array_keys(self::$_injections) as $class) {
+            unset(self::$_services[$class]);
         }
     }
 

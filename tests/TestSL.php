@@ -10,14 +10,19 @@ use Tests\Mock;
 
 class TestSL extends Testing\AbstractTestCase {
 
-    public function testRouterInstantiation() {
+    public function testInject() {
+        SL::inject(Component\Router\Facade::class, Mock\Component\Router\Facade::class);
+        $route = SL::router()->getMatchingRoute([]);
+        $this->assertEquals('test_action', $route->name());
+
+        SL::resetInjections();
         $this->expectException(NotFound::class);
         SL::router()->getMatchingRoute([]);
     }
 
-    public function testRouterInjection() {
+    public function testResetInjections() {
+        SL::resetInjections();
+        $this->expectException(\Exception::class);
         SL::inject(Component\Router\Facade::class, Mock\Component\Router\Facade::class);
-        $route = SL::router()->getMatchingRoute([]);
-        $this->assertEquals('test_action', $route->name());
     }
 }
