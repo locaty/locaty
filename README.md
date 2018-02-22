@@ -1,5 +1,6 @@
 # Locaty
 
+[![Build Status](https://travis-ci.org/locaty/locaty.svg?branch=master)](https://travis-ci.org/locaty/locaty?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/locaty/locaty/badge.svg?branch=master)](https://coveralls.io/github/locaty/locaty?branch=master)
 
 This PHP framework is under construction.
