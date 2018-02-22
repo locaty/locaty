@@ -1,0 +1,27 @@
+{
+    "name": "locaty/locaty",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "altorouter/altorouter": "^1.2"
+    },
+    "authors": [
+        {
+            "name": "Sergey Rudachenko",
+            "email": "m1no.serg@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Locaty\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    }
+}
