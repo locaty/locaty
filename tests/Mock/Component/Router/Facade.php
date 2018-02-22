@@ -13,6 +13,6 @@ class Facade extends Router\Facade {
      * @return Router\Match
      */
     public function getMatchingRoute(array $routes, string $uri = null, string $method = null): Router\Match {
-        return new Router\Match(function() {}, [], 'testAction');
+        return new Router\Match(function() {}, [], 'test_action');
     }
 }

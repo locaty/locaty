@@ -18,6 +18,6 @@ class TestSL extends Testing\AbstractTestCase {
     public function testRouterInjection() {
         SL::inject(Component\Router\Facade::class, Mock\Component\Router\Facade::class);
         $route = SL::router()->getMatchingRoute([]);
-        $this->assertEquals('testAction', $route->name());
+        $this->assertEquals('test_action', $route->name());
     }
 }
