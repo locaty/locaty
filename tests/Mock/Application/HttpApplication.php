@@ -7,6 +7,7 @@ use Locaty\Component\Router;
 use Locaty\Transfer;
 
 class HttpApplication extends AbstractHttpApplication {
+
     /**
      * @return Transfer\Response\Plain
      */
