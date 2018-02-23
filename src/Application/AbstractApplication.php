@@ -6,8 +6,11 @@ abstract class AbstractApplication {
 
     final public function run(): void {
         $this->_beforeRun();
-        $this->_run();
-        $this->_afterRun();
+        try {
+            $this->_run();
+        } finally {
+            $this->_afterRun();
+        }
     }
 
     protected function _beforeRun(): void {}

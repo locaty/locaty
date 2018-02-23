@@ -1,6 +1,6 @@
 <?php
 
-namespace Locaty\Component\Controller;
+namespace Locaty\Controller;
 
 abstract class AbstractController {
 

@@ -8,11 +8,11 @@ class Facade extends Router\Facade {
 
     /**
      * @param array $routes
-     * @param string|null $uri
-     * @param string|null $method
+     * @param string|null $requestUrl
+     * @param string|null $requestMethod
      * @return Router\Match
      */
-    public function getMatchingRoute(array $routes, string $uri = null, string $method = null): Router\Match {
+    public function getMatchingRoute(array $routes, string $requestUrl = null, string $requestMethod = null): Router\Match {
         return new Router\Match(function() {}, [], 'test_action');
     }
 }

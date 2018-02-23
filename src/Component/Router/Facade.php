@@ -9,15 +9,15 @@ class Facade extends ServiceLocator\AbstractService {
 
     /**
      * @param array $routes
-     * @param string $uri
-     * @param string $method
+     * @param string $requestUrl
+     * @param string $requestMethod
      * @return Match
      * @throws Exception\BadUsage
      * @throws Exception\NotFound
      */
-    public function getMatchingRoute(array $routes, string $uri = null, string $method = null): Match {
+    public function getMatchingRoute(array $routes, string $requestUrl, string $requestMethod): Match {
         $router = $this->_createRouter($routes);
-        $match = $router->match($uri, $method);
+        $match = $router->match($requestUrl, $requestMethod);
         if ($match === false) {
             throw new Exception\NotFound();
         }

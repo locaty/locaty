@@ -12,12 +12,12 @@ class TestSL extends Testing\AbstractTestCase {
 
     public function testInject() {
         SL::inject(Component\Router\Facade::class, Mock\Component\Router\Facade::class);
-        $route = SL::router()->getMatchingRoute([]);
+        $route = SL::router()->getMatchingRoute([], '/', 'GET');
         $this->assertEquals('test_action', $route->name());
 
         SL::resetInjections();
         $this->expectException(NotFound::class);
-        SL::router()->getMatchingRoute([]);
+        SL::router()->getMatchingRoute([], '/', 'GET');
     }
 
     public function testResetInjections() {
