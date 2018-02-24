@@ -8,7 +8,7 @@ use Locaty\SL;
 use Locaty\Testing;
 use Tests\Mock;
 
-class TestSL extends Testing\AbstractTestCase {
+class TestSL extends Testing\TestCase\Basic {
 
     public function testInject() {
         SL::inject(Component\Router\Facade::class, Mock\Component\Router\Facade::class);

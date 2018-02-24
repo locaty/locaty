@@ -2,7 +2,7 @@
 
 namespace Locaty\Transfer\Response;
 
-class Plain extends AbstractResponse {
+class Plain extends Basic {
 
     /**
      * @var string

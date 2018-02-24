@@ -2,7 +2,7 @@
 
 namespace Locaty\Controller;
 
-abstract class AbstractController {
+abstract class Basic {
 
     /**
      * @param string $name

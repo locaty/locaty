@@ -2,6 +2,6 @@
 
 namespace Locaty\Exception;
 
-class NotFound extends AbstractException {
+class NotFound extends Basic {
 
 }

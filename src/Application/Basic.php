@@ -2,7 +2,7 @@
 
 namespace Locaty\Application;
 
-abstract class AbstractApplication {
+abstract class Basic {
 
     final public function run(): void {
         $this->_beforeRun();

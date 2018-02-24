@@ -2,6 +2,6 @@
 
 namespace Locaty\Exception;
 
-class BadRequest extends AbstractException {
+class BadRequest extends Basic {
 
 }

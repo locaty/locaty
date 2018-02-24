@@ -2,7 +2,7 @@
 
 namespace Locaty\Transfer\Response;
 
-abstract class AbstractResponse {
+abstract class Basic {
 
     /**
      * @return string

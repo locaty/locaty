@@ -7,7 +7,7 @@ use Locaty\Exception;
 use Locaty\SL;
 use Locaty\Transfer;
 
-abstract class AbstractHttpApplication extends AbstractApplication {
+abstract class BasicHttp extends Basic {
 
     protected function _run(): void {
         $match = $this->_getMatchingRoute();
@@ -36,10 +36,10 @@ abstract class AbstractHttpApplication extends AbstractApplication {
 
     /**
      * @param Router\Match $match
-     * @return Transfer\Response\AbstractResponse
+     * @return Transfer\Response\Basic
      * @throws Exception\BadUsage
      */
-    protected function _getResponse(Router\Match $match): ?Transfer\Response\AbstractResponse {
+    protected function _getResponse(Router\Match $match): ?Transfer\Response\Basic {
         $action = $match->action();
         if ($this->_numberOfActionParams($action) === 0) {
             return $action();
@@ -85,9 +85,9 @@ abstract class AbstractHttpApplication extends AbstractApplication {
     }
 
     /**
-     * @param Transfer\Response\AbstractResponse $response
+     * @param Transfer\Response\Basic $response
      */
-    protected function _outputResponse(Transfer\Response\AbstractResponse $response): void {
+    protected function _outputResponse(Transfer\Response\Basic $response): void {
         $response->setHeaders();
         if ($response->hasBody()) {
             echo $response->body();

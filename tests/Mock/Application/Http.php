@@ -2,11 +2,11 @@
 
 namespace Tests\Mock\Application;
 
-use Locaty\Application\AbstractHttpApplication;
+use Locaty\Application\BasicHttp;
 use Locaty\Component\Router;
 use Locaty\Transfer;
 
-class HttpApplication extends AbstractHttpApplication {
+class Http extends BasicHttp {
 
     /**
      * @return Transfer\Response\Plain

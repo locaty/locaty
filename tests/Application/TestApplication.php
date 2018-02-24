@@ -2,16 +2,16 @@
 
 namespace Tests\Application;
 
-use Locaty\Testing\AbstractTestCase;
+use Locaty\Testing;
 use Tests\Mock;
 
-class TestApplication extends AbstractTestCase {
+class TestApplication extends Testing\TestCase\Basic {
 
     /**
      * @runInSeparateProcess
      */
     public function testRun() {
-        $app = new Mock\Application\HttpApplication();
+        $app = new Mock\Application\Http();
         ob_start();
         $app->run();
         $result = ob_get_contents();

@@ -2,10 +2,12 @@
 
 namespace Locaty\ServiceLocator;
 
-abstract class AbstractServiceLocator {
+use Locaty\Service;
+
+abstract class Basic {
 
     /**
-     * @var AbstractService[]
+     * @var Service\Basic[]
      */
     private static $_services = [];
 
@@ -21,9 +23,9 @@ abstract class AbstractServiceLocator {
 
     /**
      * @param string $class
-     * @return AbstractService
+     * @return Service\Basic
      */
-    protected static function _get(string $class): AbstractService {
+    protected static function _get(string $class): Service\Basic {
         $class = self::_prepareClassName($class);
         if (array_key_exists($class, self::$_services)) {
             return self::$_services[$class];

@@ -1,11 +1,11 @@
 <?php
 
-namespace Locaty\Testing;
+namespace Locaty\Testing\TestCase;
 
 use Locaty\SL;
 use PHPUnit\Framework\TestCase;
 
-abstract class AbstractTestCase extends TestCase {
+abstract class Basic extends TestCase {
 
     public function setUp() {
         SL::allowInjections();

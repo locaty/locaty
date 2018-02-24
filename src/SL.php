@@ -2,7 +2,7 @@
 
 namespace Locaty;
 
-class SL extends ServiceLocator\AbstractServiceLocator {
+class SL extends ServiceLocator\Basic {
 
     /**
      * @return Component\Router\Facade

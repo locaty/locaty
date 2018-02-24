@@ -3,9 +3,9 @@
 namespace Locaty\Component\Router;
 
 use Locaty\Exception;
-use Locaty\ServiceLocator;
+use Locaty\Service;
 
-class Facade extends ServiceLocator\AbstractService {
+class Facade extends Service\Basic {
 
     /**
      * @param array $routes
