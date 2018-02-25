@@ -8,6 +8,6 @@ pet project right now._
 
 ## Goals
 
-* Obvious code
+* No magic
 * Following best practices
 * Clickable all the way down
