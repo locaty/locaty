@@ -2,24 +2,28 @@
 
 namespace Locaty\Config;
 
+use Locaty\Pattern;
+
 abstract class Basic {
+
+    use Pattern\SingletonInstance;
 
     /**
      * @var array
      */
-    protected static $_config;
+    protected $_config = [];
 
     /**
      * @param array $data
      */
-    public static function load(array $data): void {
-        self::$_config = array_merge(self::$_config, $data);
+    public function load(array $data): void {
+        $this->_config = array_merge($this->_config, $data);
     }
 
     /**
      * @param array $configs
      */
-    public static function loadMulti(array $configs): void {
-        self::load(call_user_func_array('array_merge', $configs));
+    public function loadMulti(array $configs): void {
+        $this->load(call_user_func_array('array_merge', $configs));
     }
 }

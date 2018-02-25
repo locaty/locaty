@@ -1,4 +1,8 @@
-<phpunit colors="true" bootstrap="../vendor/autoload.php">
+<phpunit
+        colors="true"
+        bootstrap="../vendor/autoload.php"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/6.3/phpunit.xsd">
     <testsuites>
         <testsuite name="main">
             <directory suffix=".php">./</directory>
