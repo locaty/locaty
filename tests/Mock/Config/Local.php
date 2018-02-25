@@ -9,7 +9,7 @@ class Local extends Config\Basic {
     /**
      * @return string
      */
-    public function host(): string {
-        return $this->_config['host'];
+    public static function host(): string {
+        return self::$_config['host'];
     }
 }
