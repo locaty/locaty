@@ -2,7 +2,7 @@
 
 namespace Locaty\Transfer\Response;
 
-class Plain extends Basic {
+class Json extends Basic {
 
     /**
      * @var string
@@ -10,10 +10,10 @@ class Plain extends Basic {
     private $_content;
 
     /**
-     * @param string $content
+     * @param array $data
      */
-    public function __construct(string $content) {
-        $this->_content = $content;
+    public function __construct(array $data) {
+        $this->_content = json_encode($data, JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -28,7 +28,7 @@ class Plain extends Basic {
      */
     public function headers(): array {
         return [
-            self::HEADER_CONTENT_TYPE => 'text/plain',
+            self::HEADER_CONTENT_TYPE => 'application/json',
         ];
     }
 }

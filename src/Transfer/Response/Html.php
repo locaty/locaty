@@ -2,7 +2,7 @@
 
 namespace Locaty\Transfer\Response;
 
-class Plain extends Basic {
+class Html extends Basic {
 
     /**
      * @var string
@@ -28,7 +28,7 @@ class Plain extends Basic {
      */
     public function headers(): array {
         return [
-            self::HEADER_CONTENT_TYPE => 'text/plain',
+            self::HEADER_CONTENT_TYPE => 'text/html',
         ];
     }
 }

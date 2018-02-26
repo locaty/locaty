@@ -2,25 +2,25 @@
 
 namespace Locaty\Transfer\Response;
 
-class Plain extends Basic {
+class Redirect extends Basic {
 
     /**
      * @var string
      */
-    private $_content;
+    private $_url;
 
     /**
-     * @param string $content
+     * @param string $url
      */
-    public function __construct(string $content) {
-        $this->_content = $content;
+    public function __construct(string $url) {
+        $this->_url = $url;
     }
 
     /**
      * @return string
      */
     public function content(): ?string {
-        return $this->_content;
+        return null;
     }
 
     /**
@@ -28,7 +28,7 @@ class Plain extends Basic {
      */
     public function headers(): array {
         return [
-            self::HEADER_CONTENT_TYPE => 'text/plain',
+            self::HEADER_LOCATION => $this->_url,
         ];
     }
 }

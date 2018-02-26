@@ -4,20 +4,16 @@ namespace Locaty\Transfer\Response;
 
 abstract class Basic {
 
+    const HEADER_CONTENT_TYPE = 'Content-type';
+    const HEADER_LOCATION = 'Location';
+
     /**
      * @return string
      */
-    public abstract function body();
+    abstract public function content(): ?string;
 
     /**
-     * @return void
+     * @return array
      */
-    public abstract function setHeaders(): void;
-
-    /**
-     * @return bool
-     */
-    public function hasBody(): bool {
-        return true;
-    }
+    abstract public function headers(): array;
 }

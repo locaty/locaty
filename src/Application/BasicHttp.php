@@ -88,9 +88,9 @@ abstract class BasicHttp extends Basic {
      * @param Transfer\Response\Basic $response
      */
     protected function _outputResponse(Transfer\Response\Basic $response): void {
-        $response->setHeaders();
-        if ($response->hasBody()) {
-            echo $response->body();
+        foreach ($response->headers() as $header => $value) {
+            header("{$header}: {$value}");
         }
+        echo $response->content();
     }
 }
