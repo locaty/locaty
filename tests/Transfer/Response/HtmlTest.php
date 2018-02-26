@@ -5,7 +5,7 @@ namespace Tests\Transfer\Response;
 use Locaty\Testing;
 use Locaty\Transfer\Response;
 
-class Html extends Testing\TestCase\Basic {
+class HtmlTest extends Testing\TestCase\Basic {
 
     public function testCreate() {
         $json = new Response\Html('<h1>Test!</h1>');
