@@ -52,7 +52,7 @@ abstract class Basic {
             return;
         }
         $type = array_key_exists('type', $error) ? $error['type'] : 0;
-        if ($type === E_DEPRECATED) {
+        if ($type === E_DEPRECATED || $type === E_WARNING) {
             return;
         }
         $this->_throwErrorException($type, $error['message'], $error['file'], $error['line']);
