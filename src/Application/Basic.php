@@ -7,14 +7,7 @@ use Locaty\Exception;
 abstract class Basic {
 
     final public function __construct() {
-        register_shutdown_function(function() {
-            $error = error_get_last();
-            if ($error === null) {
-                return;
-            }
-            $code = array_key_exists('code', $error) ? $error['code'] : 0;
-            $this->_throwErrorException($code, $error['message'], $error['file'], $error['line']);
-        });
+        register_shutdown_function([$this, '_handleShutdown']);
         set_error_handler([$this, '_throwErrorException']);
         set_exception_handler([$this, '_handleException']);
         $this->init();
@@ -51,6 +44,18 @@ abstract class Basic {
             return;
         }
         $this->_handleError($e);
+    }
+
+    public function _handleShutdown(): void {
+        $error = error_get_last();
+        if ($error === null) {
+            return;
+        }
+        $type = array_key_exists('type', $error) ? $error['type'] : 0;
+        if ($type === E_DEPRECATED) {
+            return;
+        }
+        $this->_throwErrorException($type, $error['message'], $error['file'], $error['line']);
     }
 
     /**
