@@ -12,7 +12,8 @@ abstract class Basic {
             if ($error === null) {
                 return;
             }
-            $this->_throwErrorException($error['code'], $error['message'], $error['file'], $error['line']);
+            $code = array_key_exists('code', $error) ? $error['code'] : 0;
+            $this->_throwErrorException($code, $error['message'], $error['file'], $error['line']);
         });
         set_error_handler([$this, '_throwErrorException']);
         set_exception_handler([$this, '_handleException']);
