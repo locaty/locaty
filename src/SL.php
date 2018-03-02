@@ -11,4 +11,12 @@ class SL extends ServiceLocator\Basic {
         /** @noinspection PhpIncompatibleReturnTypeInspection */
         return self::_get(Component\Router\Facade::class);
     }
+
+    /**
+     * @return Service\Utils
+     */
+    public static function utils(): Service\Utils {
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
+        return self::_get(Service\Utils::class);
+    }
 }
