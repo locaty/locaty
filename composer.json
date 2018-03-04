@@ -3,7 +3,8 @@
     "type": "library",
     "license": "MIT",
     "require": {
-        "altorouter/altorouter": "^1.2"
+        "altorouter/altorouter": "^1.2",
+        "rollbar/rollbar": "^1.4"
     },
     "authors": [
         {
