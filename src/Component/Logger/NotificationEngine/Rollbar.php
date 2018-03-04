@@ -16,7 +16,7 @@ class Rollbar extends Basic {
      * @param string $token
      * @param string $environment
      */
-    public function __construct(string $token, string $environment = 'production') {
+    public function __construct(string $token, string $environment = 'development') {
         $this->_rollbarLogger = new RollbarLogger([
             'access_token' => $token,
             'environment' => $environment,
