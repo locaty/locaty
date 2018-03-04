@@ -3,6 +3,7 @@
 namespace Tests\Mock\Component\Logger;
 
 use Locaty\Component;
+use Locaty\Component\Logger\NotificationEngine;
 
 class Facade extends Component\Logger\Facade {
 
@@ -11,5 +12,12 @@ class Facade extends Component\Logger\Facade {
      */
     protected function _getLogDir(): string {
         return '/tmp/_locaty_tests';
+    }
+
+    /**
+     * @return NotificationEngine\Basic|null
+     */
+    protected function _getNotificationEngine(): ?NotificationEngine\Basic {
+        return null;
     }
 }
