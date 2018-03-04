@@ -13,14 +13,6 @@ class SL extends ServiceLocator\Basic {
     }
 
     /**
-     * @return Component\Logger\Facade
-     */
-    public static function logger(): Component\Logger\Facade {
-        /** @noinspection PhpIncompatibleReturnTypeInspection */
-        return self::_get(Component\Logger\Facade::class);
-    }
-
-    /**
      * @return Service\Utils
      */
     public static function utils(): Service\Utils {

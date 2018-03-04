@@ -2,13 +2,14 @@
 
 namespace Tests\Component\Router;
 
-use Locaty\SL;
 use Locaty\Testing;
+use Locaty\Component;
 
 class FacadeTest extends Testing\TestCase\Basic {
 
     public function testGetMatchingRoute() {
-        $match = SL::router()->getMatchingRoute($this->_routes(), '/user/123', 'GET');
+        $router = new Component\Router\Facade();
+        $match = $router->getMatchingRoute($this->_routes(), '/user/123', 'GET');
         $this->assertEquals(123, $match->params()['user_id']);
         $this->assertEquals('index', $match->name());
     }

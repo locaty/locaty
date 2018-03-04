@@ -4,17 +4,7 @@ namespace Locaty\Component\Logger;
 
 use Locaty\Service;
 
-class Facade extends Service\Basic {
-
-    /**
-     * @var string|null
-     */
-    private $_logDir = null;
-
-    protected function _init(): void {
-        $dir = getenv('LOCATY_LOG_DIR');
-        $this->_logDir = trim($dir) !== '' ? $dir : null;
-    }
+abstract class Facade extends Service\Basic {
 
     /**
      * @param \Throwable $e
@@ -47,10 +37,12 @@ class Facade extends Service\Basic {
      * @param string $text
      */
     protected function _writeText(string $name, string $text): void {
-        if ($this->_logDir === null) {
-            return;
-        }
-        $filename = $this->_logDir . '/' . $name . '.log';
+        $filename = $this->_getLogDir() . '/' . $name . '.log';
         file_put_contents($filename, $text, FILE_APPEND);
     }
+
+    /**
+     * @return string
+     */
+    abstract protected function _getLogDir(): string;
 }

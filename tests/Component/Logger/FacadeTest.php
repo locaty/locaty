@@ -2,28 +2,37 @@
 
 namespace Tests\Component\Logger;
 
-use Locaty\SL;
 use Locaty\Testing;
+use Tests\Mock;
 
 class FacadeTest extends Testing\TestCase\Basic {
 
+    const LOG_DIR = '/tmp/_locaty_tests';
+
+    public function setUp() {
+        parent::setUp();
+        $this->_initLogger();
+    }
+
     public function testLog() {
-        $testDir = '/tmp/_locaty_test';
-        if (!file_exists($testDir)) {
-            $this->assertTrue(mkdir($testDir));
-        }
-        register_shutdown_function(function() use ($testDir) {
-            $this->assertTrue(unlink($testDir . '/facade.log'));
-            $this->assertTrue(rmdir($testDir));
-        });
+        $logger = new Mock\Component\Logger\Facade();
+        $logger->log('facade', 'Entrypoint');
 
-        $this->assertTrue(putenv('LOCATY_LOG_DIR=' . $testDir));
-        SL::logger()->log('facade', 'Entrypoint');
-
-        $content = file_get_contents($testDir . '/facade.log');
+        $content = file_get_contents(self::LOG_DIR . '/facade.log');
         $lines = explode(PHP_EOL, $content);
         $this->assertCount(2, $lines);
         $this->assertContains('Entrypoint', $lines[0]);
         $this->assertEmpty($lines[1]);
+    }
+
+    protected function _initLogger() {
+        if (!file_exists(self::LOG_DIR)) {
+            mkdir(self::LOG_DIR);
+        }
+        register_shutdown_function(function () {
+            if (file_exists(self::LOG_DIR)) {
+                shell_exec('rm -rf ' . self::LOG_DIR);
+            }
+        });
     }
 }
