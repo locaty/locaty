@@ -20,7 +20,7 @@ class FacadeTest extends Testing\TestCase\Basic {
 
         $content = file_get_contents(self::LOG_DIR . '/facade.log');
         $lines = explode(PHP_EOL, $content);
-        $this->assertCount(2, $lines);
+        $this->assertCount(3, $lines);
         $this->assertContains('Entrypoint', $lines[0]);
         $this->assertEmpty($lines[1]);
     }
