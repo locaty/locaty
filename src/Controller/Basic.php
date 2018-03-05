@@ -9,9 +9,9 @@ abstract class Basic {
 
     /**
      * @param string $name
-     * @return callable
+     * @return callable|array
      */
-    public static function action(string $name): callable {
+    public static function action(string $name) {
         return [get_called_class(), $name . 'Action'];
     }
 

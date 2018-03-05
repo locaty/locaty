@@ -41,6 +41,9 @@ abstract class BasicHttp extends Basic {
      */
     protected function _getResponse(Router\Match $match): ?Transfer\Response\Basic {
         $action = $match->action();
+        if (is_array($action) && is_string($action[0])) {
+            $action[0] = new $action[0]();
+        }
         if ($this->_numberOfActionParams($action) === 0) {
             return $action();
         } else {
@@ -50,10 +53,10 @@ abstract class BasicHttp extends Basic {
     }
 
     /**
-     * @param callable $action
+     * @param callable|array $action
      * @return int
      */
-    private function _numberOfActionParams(callable $action): int {
+    private function _numberOfActionParams($action): int {
         $reflection = is_array($action) ?
             new \ReflectionMethod($action[0], $action[1]) :
             new \ReflectionFunction($action);

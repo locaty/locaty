@@ -5,7 +5,7 @@ namespace Locaty\Component\Router;
 class Match {
 
     /**
-     * @var callable
+     * @var callable|array
      */
     private $_action;
 
@@ -20,11 +20,11 @@ class Match {
     private $_name;
 
     /**
-     * @param callable $action
+     * @param callable|array $action
      * @param array $params
      * @param string $name
      */
-    public function __construct(callable $action, array $params = [], string $name = null) {
+    public function __construct($action, array $params = [], string $name = null) {
         $this->_action = $action;
         $this->_params = $params;
         $this->_name = $name;
@@ -38,9 +38,9 @@ class Match {
     }
 
     /**
-     * @return callable
+     * @return callable|array
      */
-    public function action(): callable {
+    public function action() {
         return $this->_action;
     }
 
