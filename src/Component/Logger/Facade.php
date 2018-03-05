@@ -51,7 +51,7 @@ abstract class Facade extends Service\Basic {
      * @param \Throwable $e
      */
     public function logException(\Throwable $e): void {
-        $this->_writeText('exception', $e->getMessage());
+        $this->_writeText('exception', $e->getMessage() . PHP_EOL . $e->getTraceAsString());
     }
 
     /**
@@ -60,7 +60,7 @@ abstract class Facade extends Service\Basic {
      */
     protected function _writeText(string $name, string $text): void {
         $filename = $this->_getLogDir() . '/' . $name . '.log';
-        file_put_contents($filename, $text, FILE_APPEND);
+        file_put_contents($filename, $text . PHP_EOL, FILE_APPEND);
     }
 
     /**
