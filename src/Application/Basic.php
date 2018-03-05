@@ -7,9 +7,9 @@ use Locaty\Exception;
 abstract class Basic {
 
     final public function __construct() {
-        register_shutdown_function([$this, '_handleShutdown']);
-        set_error_handler([$this, '_throwErrorException']);
-        set_exception_handler([$this, '_handleException']);
+        register_shutdown_function([$this, 'handleShutdown']);
+        set_error_handler([$this, 'throwErrorException']);
+        set_exception_handler([$this, 'handleException']);
         $this->init();
     }
 
@@ -31,14 +31,14 @@ abstract class Basic {
      * @param string $line
      * @throws \Exception
      */
-    protected function _throwErrorException(?int $code, string $text, string $file, string $line): void {
+    public function throwErrorException(?int $code, string $text, string $file, string $line): void {
         throw new \Exception("{$text} in file {$file}:{$line}", $code);
     }
 
     /**
      * @param \Throwable $e
      */
-    protected function _handleException(\Throwable $e): void {
+    public function handleException(\Throwable $e): void {
         if ($e instanceof Exception\NotFound) {
             $this->_handleNotFound($e);
             return;
@@ -46,7 +46,7 @@ abstract class Basic {
         $this->_handleError($e);
     }
 
-    public function _handleShutdown(): void {
+    public function handleShutdown(): void {
         $error = error_get_last();
         if ($error === null) {
             return;
@@ -55,7 +55,7 @@ abstract class Basic {
         if ($type === E_DEPRECATED || $type === E_WARNING) {
             return;
         }
-        $this->_throwErrorException($type, $error['message'], $error['file'], $error['line']);
+        $this->throwErrorException($type, $error['message'], $error['file'], $error['line']);
     }
 
     /**
