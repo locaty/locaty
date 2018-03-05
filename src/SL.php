@@ -19,4 +19,12 @@ class SL extends ServiceLocator\Basic {
         /** @noinspection PhpIncompatibleReturnTypeInspection */
         return self::_get(Service\Utils::class);
     }
+
+    /**
+     * @return Component\Template\Facade
+     */
+    public static function template(): Component\Template\Facade {
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
+        return self::_get(Component\Template\Facade::class);
+    }
 }
