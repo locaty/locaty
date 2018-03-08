@@ -37,6 +37,7 @@ class Twig extends Basic {
      */
     public function render(string $template, array $params = []): string {
         $loader = new \Twig_Loader_Filesystem([$this->_templatesDir]);
+        $loader->addPath($this->_templatesDir, 'root');
         $twig = new \Twig_Environment($loader, [
             'cache' => $this->_cacheDir ?? false
         ]);
