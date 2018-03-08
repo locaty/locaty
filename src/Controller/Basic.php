@@ -2,8 +2,8 @@
 
 namespace Locaty\Controller;
 
-use Locaty\SL;
 use Locaty\Transfer\Response;
+use Locaty\Component\Template;
 
 abstract class Basic {
 
@@ -21,20 +21,12 @@ abstract class Basic {
      * @return Response\Html
      */
     protected function _createTemplateResponse(string $template, array $params = []): Response\Html {
-        $content = SL::template()->render($this->_generateTemplateFileName($template), $params);
+        $content = $this->_getTemplateEngine()->render($template, $params);
         return new Response\Html($content);
     }
 
     /**
-     * @param string $template
-     * @return string
+     * @return Template\Engine\Basic
      */
-    protected function _generateTemplateFileName(string $template): string {
-        return $this->_getTemplateDir() . '/' . $template . '.php';
-    }
-
-    /**
-     * @return string
-     */
-    abstract protected function _getTemplateDir(): string;
+    abstract protected function _getTemplateEngine(): Template\Engine\Basic;
 }

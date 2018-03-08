@@ -4,7 +4,8 @@
     "license": "MIT",
     "require": {
         "altorouter/altorouter": "^1.2",
-        "rollbar/rollbar": "^1.4"
+        "rollbar/rollbar": "^1.4",
+        "twig/twig": "^2.0"
     },
     "authors": [
         {

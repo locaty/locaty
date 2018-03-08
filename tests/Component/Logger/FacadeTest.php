@@ -16,12 +16,12 @@ class FacadeTest extends Testing\TestCase\Basic {
 
     public function testLog() {
         $logger = new Mock\Component\Logger\Facade();
-        $logger->log('facade', 'Entrypoint');
+        $logger->log('facade', 'Entry');
 
         $content = file_get_contents(self::LOG_DIR . '/facade.log');
         $lines = explode(PHP_EOL, $content);
         $this->assertCount(3, $lines);
-        $this->assertContains('Entrypoint', $lines[0]);
+        $this->assertContains('Entry', $lines[0]);
         $this->assertEmpty($lines[1]);
     }
 
