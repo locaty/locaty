@@ -13,6 +13,6 @@ abstract class Basic {
      * @param array $config
      */
     public static function init(array $config): void {
-        self::$_config = array_merge(self::$_config, $config);
+        self::$_config = array_replace_recursive(self::$_config, $config);
     }
 }
