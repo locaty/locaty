@@ -46,10 +46,9 @@ abstract class BasicHttp extends Basic {
         }
         if ($this->_numberOfActionParams($action) === 0) {
             return $action();
-        } else {
-            $request = $this->_createRequest($match->params());
-            return $action($request);
         }
+        $request = $this->_createRequest($match->params());
+        return $action($request);
     }
 
     /**
