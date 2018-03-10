@@ -16,12 +16,12 @@ abstract class Facade extends Service\Basic {
     }
 
     /**
-     * @param \Throwable $e
+     * @param \Throwable $exception
      */
-    public function notifyException(\Throwable $e): void {
-        $this->logException($e);
+    public function notifyException(\Throwable $exception): void {
+        $this->logException($exception);
         if ($this->_notificationEngine !== null) {
-            $this->_notificationEngine->notifyException($e);
+            $this->_notificationEngine->notifyException($exception);
         }
     }
 
@@ -48,10 +48,10 @@ abstract class Facade extends Service\Basic {
     }
 
     /**
-     * @param \Throwable $e
+     * @param \Throwable $exception
      */
-    public function logException(\Throwable $e): void {
-        $this->_writeText('exception', $e->getMessage() . PHP_EOL . $e->getTraceAsString());
+    public function logException(\Throwable $exception): void {
+        $this->_writeText('exception', $exception->getMessage() . PHP_EOL . $exception->getTraceAsString());
     }
 
     /**

@@ -5,9 +5,9 @@ namespace Locaty\Component\Logger\NotificationEngine;
 abstract class Basic {
 
     /**
-     * @param \Throwable $e
+     * @param \Throwable $exception
      */
-    abstract public function notifyException(\Throwable $e): void;
+    abstract public function notifyException(\Throwable $exception): void;
 
     /**
      * @param string $message

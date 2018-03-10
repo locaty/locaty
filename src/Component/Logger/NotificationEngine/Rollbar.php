@@ -33,13 +33,13 @@ class Rollbar extends Basic {
     }
 
     /**
-     * @param \Throwable $e
+     * @param \Throwable $exception
      */
-    public function notifyException(\Throwable $e): void {
+    public function notifyException(\Throwable $exception): void {
         if (!$this->_isEnabled) {
             return;
         }
-        $this->_rollbarLogger->log(Level::ERROR, $e, []);
+        $this->_rollbarLogger->log(Level::ERROR, $exception, []);
     }
 
     /**

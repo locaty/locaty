@@ -49,18 +49,18 @@ class Http extends BasicHttp {
     }
 
     /**
-     * @param \Throwable $e
+     * @param \Throwable $exception
      * @throws \Throwable
      */
-    protected function _handleNotFound(\Throwable $e): void {
-        die('404');
+    protected function _handleNotFound(\Throwable $exception): void {
+        echo '404';
     }
 
     /**
-     * @param \Throwable $e
+     * @param \Throwable $exception
      * @throws \Throwable
      */
-    protected function _handleError(\Throwable $e): void {
-        throw $e;
+    protected function _handleError(\Throwable $exception): void {
+        throw $exception;
     }
 }

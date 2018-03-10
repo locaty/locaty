@@ -36,14 +36,14 @@ abstract class Basic {
     }
 
     /**
-     * @param \Throwable $e
+     * @param \Throwable $exception
      */
-    public function handleException(\Throwable $e): void {
-        if ($e instanceof Exception\NotFound) {
-            $this->_handleNotFound($e);
+    public function handleException(\Throwable $exception): void {
+        if ($exception instanceof Exception\NotFound) {
+            $this->_handleNotFound($exception);
             return;
         }
-        $this->_handleError($e);
+        $this->_handleError($exception);
     }
 
     public function handleShutdown(): void {
@@ -59,14 +59,14 @@ abstract class Basic {
     }
 
     /**
-     * @param \Throwable $e
+     * @param \Throwable $exception
      */
-    abstract protected function _handleNotFound(\Throwable $e): void;
+    abstract protected function _handleNotFound(\Throwable $exception): void;
 
     /**
-     * @param \Throwable $e
+     * @param \Throwable $exception
      */
-    abstract protected function _handleError(\Throwable $e): void;
+    abstract protected function _handleError(\Throwable $exception): void;
 
     protected function _beforeRun(): void {}
 
