@@ -2,18 +2,33 @@
 
 namespace Locaty\Application;
 
+use DI;
 use Locaty\Exception;
+use Locaty\Service;
+use Psr;
 
 abstract class Basic {
 
-    final public function __construct() {
-        register_shutdown_function([$this, 'handleShutdown']);
-        set_error_handler([$this, 'throwErrorException']);
-        set_exception_handler([$this, 'handleException']);
-        $this->init();
-    }
+    /**
+     * @var Psr\Container\ContainerInterface
+     */
+    protected $_container;
 
-    public function init(): void {}
+    /**
+     * @return Basic
+     * @throws DI\DependencyException
+     * @throws DI\NotFoundException
+     */
+    public static function create(): Basic {
+        $container = new DI\Container();
+        $errorHandler = $container->get(Service\ErrorHandler::class);
+        $errorHandler->registerHandlers();
+        $result = $container->get(get_called_class());
+        $result->setContainer($container);
+        set_exception_handler([$result, 'handleException']);
+        $result->_init();
+        return $result;
+    }
 
     final public function run(): void {
         $this->_beforeRun();
@@ -25,14 +40,10 @@ abstract class Basic {
     }
 
     /**
-     * @param int $code
-     * @param string $text
-     * @param string $file
-     * @param string $line
-     * @throws \Exception
+     * @param Psr\Container\ContainerInterface $container
      */
-    public function throwErrorException(?int $code, string $text, string $file, string $line): void {
-        throw new \Exception("{$text} in file {$file}:{$line}", $code);
+    public function setContainer(Psr\Container\ContainerInterface $container): void {
+        $this->_container = $container;
     }
 
     /**
@@ -46,17 +57,7 @@ abstract class Basic {
         $this->_handleError($exception);
     }
 
-    public function handleShutdown(): void {
-        $error = error_get_last();
-        if ($error === null) {
-            return;
-        }
-        $type = array_key_exists('type', $error) ? $error['type'] : 0;
-        if ($type === E_DEPRECATED || $type === E_WARNING) {
-            return;
-        }
-        $this->throwErrorException($type, $error['message'], $error['file'], $error['line']);
-    }
+    protected function _init(): void {}
 
     /**
      * @param \Throwable $exception

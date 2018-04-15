@@ -5,7 +5,9 @@
     "require": {
         "altorouter/altorouter": "^1.2",
         "rollbar/rollbar": "^1.4",
-        "twig/twig": "^2.0"
+        "twig/twig": "^2.0",
+        "php-di/php-di": "^6.0",
+        "psr/container": "^1.0"
     },
     "authors": [
         {

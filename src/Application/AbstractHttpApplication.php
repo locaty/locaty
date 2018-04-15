@@ -4,11 +4,27 @@ namespace Locaty\Application;
 
 use Locaty\Component\Router;
 use Locaty\Exception;
-use Locaty\SL;
 use Locaty\Transfer;
 
-abstract class BasicHttp extends Basic {
+abstract class AbstractHttpApplication extends Basic {
 
+    /**
+     * @var Router\Facade
+     */
+    private $_router;
+
+    /**
+     * @param Router\Facade $router
+     */
+    public function __construct(Router\Facade $router) {
+        $this->_router = $router;
+    }
+
+    /**
+     * @throws Exception\NotFound
+     * @throws \ReflectionException
+     * @throws Exception\UnknownError
+     */
     protected function _run(): void {
         $match = $this->_getMatchingRoute();
         $response = $this->_getResponse($match);
@@ -25,9 +41,11 @@ abstract class BasicHttp extends Basic {
 
     /**
      * @return Router\Match
+     * @throws Exception\NotFound
+     * @throws Exception\UnknownError
      */
     protected function _getMatchingRoute(): Router\Match {
-        return SL::router()->getMatchingRoute(
+        return $this->_router->getMatchingRoute(
             $this->_routes(),
             $this->_getRequestUrl(),
             $this->_getRequestMethod()
@@ -37,12 +55,12 @@ abstract class BasicHttp extends Basic {
     /**
      * @param Router\Match $match
      * @return Transfer\Response\Basic
-     * @throws Exception\BadUsage
+     * @throws \ReflectionException
      */
     protected function _getResponse(Router\Match $match): ?Transfer\Response\Basic {
         $action = $match->action();
         if (is_array($action) && is_string($action[0])) {
-            $action[0] = new $action[0]();
+            $action[0] = $this->_container->get($action[0]);
         }
         if ($this->_numberOfActionParams($action) === 0) {
             return $action();
@@ -54,6 +72,7 @@ abstract class BasicHttp extends Basic {
     /**
      * @param callable|array $action
      * @return int
+     * @throws \ReflectionException
      */
     private function _numberOfActionParams($action): int {
         $reflection = is_array($action) ?

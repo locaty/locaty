@@ -9,6 +9,7 @@ class FacadeTest extends Testing\TestCase\Basic {
 
     public function testGetMatchingRoute() {
         $router = new Component\Router\Facade();
+        /** @noinspection PhpUnhandledExceptionInspection */
         $match = $router->getMatchingRoute($this->_routes(), '/user/123', 'GET');
         $this->assertEquals(123, $match->params()['user_id']);
         $this->assertEquals('index', $match->name());

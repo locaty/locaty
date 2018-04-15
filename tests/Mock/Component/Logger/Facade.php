@@ -10,7 +10,7 @@ class Facade extends Component\Logger\Facade {
     /**
      * @return string
      */
-    protected function _getLogDir(): string {
+    protected function _getLogsDir(): string {
         return '/tmp/_locaty_tests';
     }
 

@@ -4,7 +4,7 @@ namespace Locaty\Component\Logger;
 
 use Locaty\Service;
 
-abstract class Facade extends Service\Basic {
+abstract class Facade extends Service\AbstractService {
 
     /**
      * @var NotificationEngine\Basic
@@ -44,7 +44,7 @@ abstract class Facade extends Service\Basic {
     public function log(string $name, string $format, $args = null, $_ = null): void {
         $message = sprintf($format, array_slice(func_get_args(), 2));
         $prefix = '[' . date('Y-m-d H:i:s') . ']';
-        $this->_writeText($name, "{$prefix} {$message}\n");
+        $this->_writeText($name, "{$prefix} {$message}");
     }
 
     /**
@@ -59,7 +59,7 @@ abstract class Facade extends Service\Basic {
      * @param string $text
      */
     protected function _writeText(string $name, string $text): void {
-        $filename = $this->_getLogDir() . '/' . $name . '.log';
+        $filename = $this->_getLogsDir() . '/' . $name . '.log';
         file_put_contents($filename, $text . PHP_EOL, FILE_APPEND);
     }
 
@@ -71,5 +71,5 @@ abstract class Facade extends Service\Basic {
     /**
      * @return string
      */
-    abstract protected function _getLogDir(): string;
+    abstract protected function _getLogsDir(): string;
 }

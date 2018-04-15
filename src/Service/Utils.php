@@ -2,11 +2,11 @@
 
 namespace Locaty\Service;
 
-class Utils extends Basic {
+class Utils extends AbstractService {
 
     /**
      * @param array $data
-     * @param array $keys
+     * @param string[] $keys
      * @param mixed $default
      * @return mixed
      * @throws \InvalidArgumentException
@@ -26,8 +26,8 @@ class Utils extends Basic {
     }
 
     /**
-     * @param mixed $data
-     * @param array $keys
+     * @param array $data
+     * @param string[] $keys
      * @return bool
      * @throws \InvalidArgumentException
      */

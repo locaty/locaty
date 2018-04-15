@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 
 namespace Tests\Application;
 
@@ -11,7 +12,8 @@ class BasicTest extends Testing\TestCase\Basic {
      * @runInSeparateProcess
      */
     public function testRun() {
-        $app = new Mock\Application\Http();
+        /** @var Mock\Application\Http $app */
+        $app = Mock\Application\Http::create();
         $app->setActionName('indexAction');
         ob_start();
         $app->run();
@@ -21,7 +23,8 @@ class BasicTest extends Testing\TestCase\Basic {
     }
 
     public function testHandleError() {
-        $app = new Mock\Application\Http();
+        /** @var Mock\Application\Http $app */
+        $app = Mock\Application\Http::create();
         $app->setActionName('badAction');
         $this->expectExceptionMessage('Some error');
         $app->run();

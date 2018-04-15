@@ -34,6 +34,9 @@ class Twig extends Basic {
      * @param string $template
      * @param array $params
      * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function render(string $template, array $params = []): string {
         $loader = new \Twig_Loader_Filesystem([$this->_templatesDir]);
